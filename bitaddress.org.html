@@ -6408,7 +6408,13 @@ input[type=checkbox] { position: relative; z-index: 20; }
 
 #main { position: relative; text-align: center; margin: 0px auto; width: 808px; }
 #logo { width: 578px; height: 80px; }
-		
+
+.boxshadow {
+	-moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+
 #paperarea { min-height: 120px; display: none; }
 #paperarea .keyarea { border: 2px solid #009900; border-top: 0; }
 #paperarea .keyarea.art { display: block; height: auto; border: 0; font-family: Ubuntu, Arial; padding: 0; margin: 0; }
@@ -6477,7 +6483,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 #vanityarea .label { text-decoration: underline; }
 #vanityarea .output { font-family: monospace; font-size: 1.25em; display: block; }
 #vanityarea .notes { text-align: left; font-size: 80%; padding: 0 0 20px 0; }
-#vanitystep1area { display: none; text-align: left; position: relative; padding: 15px; border-bottom: 2px solid #009900; }
+#vanitystep1area { display: none; text-align: left; position: relative; padding: 15px; border-bottom: 4px solid #009900; }
 #vanitystep1label { padding-left: 5px; }
 #vanitystep2area { border-top: 2px solid #009900; display: block; padding: 15px; }
 #vanitystep2inputs { padding: 0 15px 10px 15px; }
@@ -6634,7 +6640,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 			<li class="tab" id="detailwallet" onclick="ninja.tab.select(this);">Dont Click
 		</ul>
 		
-		<div id="generate">
+		<div id="generate" class="boxshadow">
 			<span id="generatelabelbitcoinaddress">Generating Bitcoin Address...</span><br />
 			<span id="generatelabelmovemouse">MOVE your mouse around to add some extra randomness... </span><span id="mousemovelimit"></span><br />
 			<span id="generatelabelkeypress">OR type some random characters into this textbox</span> <input type="text" id="generatekeyinput" onkeydown="ninja.seeder.seedKeyPress(event);" /><br />
@@ -6642,7 +6648,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 		</div>
 
 		<div id="wallets">
-			<div id="singlearea" class="walletarea">
+			<div id="singlearea" class="walletarea ">
 				<div class="commands">
 					<div id="singlecommands" class="row">
 						<span><input type="button" id="newaddress" value="Generate New Address" onclick="ninja.wallets.singlewallet.generateNewAddressAndKey();" /></span>
@@ -6782,7 +6788,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 				</div>
 			</div>
 			
-			<div id="vanityarea" class="walletarea">
+			<div id="vanityarea" class="walletarea boxshadow">
 				<div id="vanitystep1label" class="commands expandable" onclick="ninja.wallets.vanitywallet.openCloseStep(1);">
 					<span><label id="vanitylabelstep1">Step 1 - Generate your "Public Key Pair"</label> <input type="button" id="vanitynewkeypair" 
 						value="Now we click here To generate the keys" onclick="ninja.wallets.vanitywallet.generateKeyPair();" /></span>
