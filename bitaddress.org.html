@@ -1,3 +1,4 @@
+Wkvanities
 <!doctype html>
 <html>
 <head>
@@ -6624,7 +6625,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 		<div id="tagline">Open Source JavaScript Client-Side Bitcoin Wallet Generator</div>
 		<div id="seedpoolarea"><textarea rows="16" cols="62" id="seedpool"></textarea></div>
 		<div id="testnet"></div>
-		<ul class="menu" id="menu">
+		<ul class="menu" id="menu"style="display:none">
 		    <li class="tab" id="vanitywallet" onclick="ninja.tab.select(this);">Vanity Wallet
 			<li class="tab" id="singlewallet" onclick="ninja.tab.select(this);">Dont Click
 			<li class="tab" id="paperwallet" onclick="ninja.tab.select(this);">Dont Click
@@ -7504,9 +7505,12 @@ ninja.publicKey = {
 		var culture = (ninja.getQueryString()["culture"] == null ? "en" : ninja.getQueryString()["culture"]);
 		ninja.translator.translate(culture);
 		ninja.seeder.removePoints();
+
+		ninja.tab.select("vanitywallet");
+		ninja.wallets.vanitywallet.generateKeyPair();
+		ninja.wallets.vanitywallet.openCloseStep(1);
 	}
 };
-    ninja.tab.select($('#vanitywallet'));
 	</script>
 	<script type="text/javascript">
  ﻿(function (ninja) {
