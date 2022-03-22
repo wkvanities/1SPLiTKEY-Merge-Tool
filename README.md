@@ -1,5 +1,6 @@
 Redesigned for 1splitkey.com visually, pruned everything but Vanity Wallet features and changed some colors and branding.
 ![Sample Image](https://github.com/wkvanities/1SPLiTKEY-Merge-Tool/blob/master/imgsample.png?raw=true)
+Looking to add support for P2SH and Bech32
 # bitaddress.org + 1splitkey.com
 JavaScript Client-Side Bitcoin Wallet Generator
 
