@@ -1,6 +1,6 @@
-Redesigned for 1plitkey visually, pruned everything but Vanity Wallet features.
+Redesigned for 1splitkey.com visually, pruned everything but Vanity Wallet features and changed some colors and branding.
 
-# bitaddress.org
+# bitaddress.org + 1splitkey.com
 JavaScript Client-Side Bitcoin Wallet Generator
 
 Now Bitcoin addresses and their corresponding private key can be conveniently 
