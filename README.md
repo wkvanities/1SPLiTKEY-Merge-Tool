@@ -1,4 +1,4 @@
-Im abandoning this project
+Redesigned for 1plitkey visually, pruned everything but Vanity Wallet features.
 
 # bitaddress.org
 JavaScript Client-Side Bitcoin Wallet Generator
