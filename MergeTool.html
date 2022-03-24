@@ -6549,7 +6549,11 @@ input[type=checkbox] { position: relative; z-index: 20; }
     #culturemenu { text-align: center; padding: 0 10px 5px 10px; margin-bottom: 3px; font-size: 90%; }
     #culturemenu span { padding: 3px; }
     #culturemenu .selected { text-decoration: none; color: #000000; }
-    .culturemenurow { padding: 2px 0; }
+    .culturemenurow 
+    { 
+    	padding: 2px 0; 
+    	display: none;
+    }
 
 	#braincommands .row .label { width: 200px; display: inline-block; }
 	#braincommands .notes { font-size: 80%; display: block; padding: 5px 10px; }
@@ -6605,7 +6609,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 
 	</style>
 </head>
-<body onclick="SecureRandom.seedTime();" onmousemove="ninja.seeder.seed(event);">
+<body>
 	<div id="busyblock"></div>
 	<div id="main">
 		<div id="culturemenu">
@@ -6643,7 +6647,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 		<div id="generate" class="boxshadow">
 			<span id="generatelabelbitcoinaddress">Generating Bitcoin Address...</span><br />
 			<span id="generatelabelmovemouse">MOVE your mouse around to add some extra randomness... </span><span id="mousemovelimit"></span><br />
-			<span id="generatelabelkeypress">OR type some random characters into this textbox</span> <input type="text" id="generatekeyinput" onkeydown="ninja.seeder.seedKeyPress(event);" /><br />
+			<span id="generatelabelkeypress">OR type some random characters into this textbox</span> <input type="text" id="generatekeyinput"" /><br />
 			<div id="seedpooldisplay"></div>
 		</div>
 
@@ -6789,12 +6793,12 @@ input[type=checkbox] { position: relative; z-index: 20; }
 			</div>
 			
 			<div id="vanityarea" class="walletarea boxshadow">
-				<div id="vanitystep1label" class="commands expandable" onclick="ninja.wallets.vanitywallet.openCloseStep(1);">
+				<div style="display:none" id="vanitystep1label" class="commands expandable" onclick="ninja.wallets.vanitywallet.openCloseStep(1);">
 					<span><label id="vanitylabelstep1">Step 1 - Generate your "Public Key Pair"</label> <input type="button" id="vanitynewkeypair" 
 						value="Now we click here To generate the keys" onclick="ninja.wallets.vanitywallet.generateKeyPair();" /></span>
 					<div id="vanitystep1icon" class="more"></div>
 				</div>
-				<div id="vanitystep1area">
+				<div id="vanitystep1area" style="dislay:none">
 					<div>
 						<span class="label" id="vanitylabelstep1publickey">Public Key: Its okay to share this with 1SPLiTKEY</span>
 						<div class="output pubkeyhex" id="vanitypubkey"></div>
@@ -7407,7 +7411,9 @@ ninja.publicKey = {
 	<script type="text/javascript">
 ﻿ninja.seeder = {
 	init: (function () {
-		document.getElementById("generatekeyinput").value = "";
+		
+
+
 	})(),
 
 	// number of mouse movements to wait for
@@ -7500,6 +7506,8 @@ ninja.publicKey = {
 	},
 
 	seedingOver: function () {
+		if(!ninja.seeder.isStillSeeding) return;
+
 		ninja.seeder.isStillSeeding = false;
 		// run sync unit tests
 		ninja.status.unitTests();
@@ -7514,6 +7522,7 @@ ninja.publicKey = {
 		ninja.tab.select("vanitywallet");
 		ninja.wallets.vanitywallet.generateKeyPair();
 		ninja.wallets.vanitywallet.openCloseStep(1);
+		document.getElementById("vanitystep1area").style.display = "none";
 	}
 };
 	</script>
@@ -11815,6 +11824,30 @@ if (ninja.getQueryString()["testnet"] == "true" || ninja.getQueryString()["testn
 if (ninja.getQueryString()["showseedpool"] == "true" || ninja.getQueryString()["showseedpool"] == "1") {
 	document.getElementById("seedpoolarea").style.display = "block";
 }
+
+(function() {
+	ninja.seeder.seedingOver();
+
+	if(ninja.getQueryString()["wallet_check"] == "true")
+	{
+		document.getElementById("vanityinput1").value = ninja.getQueryString()["public_key"];
+		document.getElementById("vanityinput2").value = ninja.getQueryString()["partial_priv"];
+
+		var targetWallet = ninja.getQueryString()["target_wallet"];
+		ninja.wallets.vanitywallet.addKeys();
+		var walletResult = document.getElementById("vanityaddress").innerText;
+
+		if(targetWallet == walletResult)
+		{
+			console.log("Hot diggidy damn. The wallet solved!");
+			//Start web request
+		}
+		else
+		{
+			console.log("Aww Too bad.. This partial_priv doesn't solve");
+		}
+	}
+})();
 	</script>
 </body>
 </html>
