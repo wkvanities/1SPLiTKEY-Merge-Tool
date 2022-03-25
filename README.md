@@ -5,8 +5,8 @@ Looking to add support for P2SH and Bech32
 
 # bitaddress.org + 1splitkey.com
 for MergeToolPruned.html
-`?public_key=[user's public key]&partial_priv=[generated partial priv]&vanityaddress=[target vanity address]`
-`?wallet_check=true&public_key=[user's public key]&partial_priv=[generated partial priv]&vanityaddress=[target vanity address]`
+`?public_key=[user's public key]&partial_priv=[generated partial priv]&target_wallet=[target vanity address]`
+`?wallet_check=true&public_key=[user's public key]&partial_priv=[generated partial priv]&target_wallet=[target vanity address]`
 we use this to validate internally.
 JavaScript Client-Side Bitcoin Wallet Generator
 
